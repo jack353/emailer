@@ -39,6 +39,10 @@ class Gmail:
         time.sleep(1.5)
         ActionChains(browser).key_down(Keys.COMMAND).key_down(Keys.ENTER).key_up(Keys.COMMAND).key_up(Keys.ENTER).perform()
 
+    def closeBrowser(Gmail):
+        browser = Gmail.browser
+        browser.quit()
+
     # browser.find_element_by_xpath('//#docuhtml/body/div').click()
     # time.sleep(2)
 
