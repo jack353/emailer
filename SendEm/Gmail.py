@@ -3,6 +3,7 @@ import time
 import random
 from selenium.webdriver.common.action_chains import ActionChains
 from selenium.webdriver.common.keys import Keys
+import csv
 
 
 #UNITED STATES 2797
@@ -11,13 +12,37 @@ class Gmail:
 
     browser = None
 
+    nameLine = 0
+
+    password = 'Daniel2222'
 
     def initalizeBrowser(Gmail):
         Gmail.browser = webdriver.Chrome("/Users/a/Downloads/chromedriver")
         Gmail.browser.get("http://www.gmail.com")
         time.sleep(1.5)
 
-    #def createEmail(Gmail):
+    def createEmail(Gmail):
+        browser = Gmail.browser
+        password = Gmail.password
+        first = []
+        last = []
+        browser.find_elements_by_css_selector('.RveJvd.snByac')[1].click()
+        with open("/Users/a/PycharmProjects/Thing/SendEm/namesForTests.csv", 'r+') as f:
+            read = csv.reader(f, delimiter=',', quotechar='"')
+            for row in read:
+                first.append(row[0])
+                last.append(row[1])
+        time.sleep(.5)
+        browser.find_element_by_css_selector('.whsOnd.zHQkBf').send_keys(first[Gmail.nameLine])
+        time.sleep(.5)
+        browser.find_elements_by_css_selector('.whsOnd.zHQkBf')[1].send_keys(last[Gmail.nameLine])
+        time.sleep(.5)
+        address = first[Gmail.nameLine] + last[Gmail.nameLine] + str(random.randint(100000, 1000000))
+        browser.find_elements_by_css_selector('.whsOnd.zHQkBf')[2].send_keys(address)
+        browser.find_elements_by_css_selector('.whsOnd.zHQkBf')[3].send_keys(password)
+        browser.find_elements_by_css_selector('.whsOnd.zHQkBf')[4].send_keys(password)
+        browser.find_element_by_css_selector('.RveJvd.snByac').click()
+        Gmail.nameLine+=1
 
     def signIn(Gmail):
         browser = Gmail.browser
@@ -45,23 +70,12 @@ class Gmail:
         browser = Gmail.browser
         browser.quit()
 
-    # browser.find_element_by_xpath('//#docuhtml/body/div').click()
-    # time.sleep(2)
-
-    # elements = browser.find_element_by_class_name('angular-squire-iframe')
-    # browser.find_element_by_xpath('//div[@class="protonmail_signature_block-user protonmail_signature_block-empty"]')
-
-    # browser.execute_script("arguments[0].innerHTML='Hey Ryan... It works 😉'", browser.find_element_by_xpath('//div[@class="protonmail_signature_block-user protonmail_signature_block-empty"]'))
-
-    # browser.find_element_by_xpath('//html/body/div').send_keys('Hey Ryan... It works 😉')
-
-    # time.sleep(2)
-
-
 Gmail.initalizeBrowser(Gmail)
 
-Gmail.signIn(Gmail)
+Gmail.createEmail(Gmail)
 
-while True:
-    Gmail.send(Gmail)
-    time.sleep(1.5)
+#Gmail.signIn(Gmail)
+
+#while True:
+#    Gmail.send(Gmail)
+#    time.sleep(1.5)

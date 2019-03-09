@@ -5,7 +5,7 @@ import time
 
 http = urllib3.PoolManager()
 
-pageURL = "https://rivoters.com/by_ZIP_Code/02813.html"
+pageURL = "https://rivoters.com/by_ZIP_Code/02831.html"
 
 def getSoup():
     page = http.request('GET', pageURL)
@@ -16,7 +16,7 @@ def getNames(soup):
     people = soup.findAll("a")
     people.pop(0)
     people.pop(0)
-    with open ("/Users/a/Documents/names.csv", 'a+') as f:
+    with open ("/Users/a/PycharmProjects/Thing/SendEm/namesForTests.csv", 'a+') as f:
         write = csv.writer(f, delimiter=',', quotechar='"', quoting=csv.QUOTE_MINIMAL)
         for i in range(len(people)):
             peopleList = str(people[i].text).split(',')
