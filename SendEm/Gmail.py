@@ -17,6 +17,8 @@ class Gmail:
         Gmail.browser.get("http://www.gmail.com")
         time.sleep(1.5)
 
+    #def createEmail(Gmail):
+
     def signIn(Gmail):
         browser = Gmail.browser
         browser.find_element_by_id('identifierId').send_keys('danwong2019@gmail.com')
@@ -32,9 +34,9 @@ class Gmail:
         browser = Gmail.browser
         browser.find_element_by_xpath('//div/div/div/div/div/div/div/div/div/div/div/div/div/div').click()
         time.sleep(2)
-        browser.find_element_by_class_name('vO').send_keys('pcosta19@lasalle-academy.org')
+        browser.find_element_by_class_name('vO').send_keys('rbourque19@lasalle-academy.org')
         time.sleep(1)
-        x = 'Hey Dan' + str(random.randint(0, 1000))
+        x = 'Hey Ryan ' + str(random.randint(0, 1000))
         browser.find_element_by_class_name('aoT').send_keys(x)
         time.sleep(1.5)
         ActionChains(browser).key_down(Keys.COMMAND).key_down(Keys.ENTER).key_up(Keys.COMMAND).key_up(Keys.ENTER).perform()
