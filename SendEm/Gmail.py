@@ -59,7 +59,7 @@ class Gmail:
         browser = Gmail.browser
         browser.find_element_by_xpath('//div/div/div/div/div/div/div/div/div/div/div/div/div/div').click()
         time.sleep(2)
-        browser.find_element_by_class_name('vO').send_keys('rbourque19@lasalle-academy.org')
+        browser.find_element_by_class_name('vO').send_keys('tgillete19@lasalle-academy.org')
         time.sleep(1)
         x = 'Hey Ryan ' + str(random.randint(0, 1000))
         browser.find_element_by_class_name('aoT').send_keys(x)
